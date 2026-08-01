@@ -10,5 +10,6 @@ class User(Base):
 
     user_id : Mapped[UUID] = Column(sa_UUID, primary_key=True, index = True, nullable=False, default=uuid4())
     user_name : Mapped[str] = Column(String, nullable=False)
-    usser_email : Mapped[str] = Column(String, nullable=False)
+    user_email : Mapped[str] = Column(String, nullable=False)
+    user_password : Mapped[String] = Column(String, nullable=False)
      
