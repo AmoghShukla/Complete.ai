@@ -1,15 +1,46 @@
-from uuid import UUID, uuid4
+import uuid
+from datetime import datetime, timezone
 
-from sqlalchemy import Column, String
-from sqlalchemy.orm import Mapped, UUID as sa_UUID
+from sqlalchemy import String, Boolean, DateTime, func
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import Mapped, mapped_column, relationship, DeclarativeBase
 
 from backend.core.base import Base
 
 class User(Base):
-    __tablename__="user"
+    __tablename__ = "users"
 
-    user_id : Mapped[UUID] = Column(sa_UUID, primary_key=True, index = True, nullable=False, default=uuid4())
-    user_name : Mapped[str] = Column(String, nullable=False)
-    user_email : Mapped[str] = Column(String, nullable=False)
-    user_password : Mapped[String] = Column(String, nullable=False)
-     
+    user_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4,
+    )
+
+    user_email: Mapped[str] = mapped_column(
+        String(255),
+        unique=True,
+        index=True,
+        nullable=False,
+    )
+    user_name: Mapped[str] = mapped_column(
+        String(50),
+        unique=True,
+        index=True,
+        nullable=False,
+    )
+    user_password: Mapped[str] = mapped_column(
+        String(255),
+        nullable=False,
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False,
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False,
+    )
