@@ -45,4 +45,3 @@ class Reminder(Base):
  
     def __repr__(self) -> str:
         return f"<Reminder reminder_id={self.reminder_id} remind_at={self.remind_at}>"
- 
