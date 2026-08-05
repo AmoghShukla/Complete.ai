@@ -21,7 +21,7 @@ class Tag(Base):
         nullable=False, index=True,
     )
  
-    tag_name: Mapped[str] = mapped_column(String, nullable=False)
+    tag_name: Mapped[str] = mapped_column(String, nullable=False, index=True)
  
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
