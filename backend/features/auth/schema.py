@@ -1,1 +1,1 @@
-from pydantic import BaseSettings
+from pydantic import BaseModel
