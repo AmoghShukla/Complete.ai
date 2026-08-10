@@ -12,3 +12,7 @@ class SignupReponse(BaseModel):
     user_name : str
     role : str
     user_email : str
+
+class LoginRequest(BaseModel):
+    user_email: EmailStr
+    user_password: str
