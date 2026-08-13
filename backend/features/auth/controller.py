@@ -10,4 +10,5 @@ async def signup(data: SignupRequest, db: AsyncSession = Depends(get_db)):
     return await user_signup(data, db)
 
 @router.post(prefix='/login', status_code=status.HTTP_200_OK)
-async def login(data : LoginRequest, db : AsyncSession = Dependfs(get_db))
+async def login(data : LoginRequest, db : AsyncSession = Depends(get_db)):
+    return await user_login(data, db)
