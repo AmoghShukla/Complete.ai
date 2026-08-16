@@ -3,4 +3,4 @@
 class UserRepository:
 
     async def signup(data, db):
-        
+        db.add(data)
