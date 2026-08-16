@@ -2,4 +2,5 @@
 
 class UserRepository:
 
-    pass
+    async def signup(data, db):
+        
