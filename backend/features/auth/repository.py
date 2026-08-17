@@ -2,6 +2,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 class UserRepository:
 
+    @staticmethod
     async def signup(data, db):
         try:
             db.add(data)
