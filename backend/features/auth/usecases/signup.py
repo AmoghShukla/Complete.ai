@@ -1,6 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from backend.features.auth.repository import UserRepository
 from backend.features.auth.schema import SignupRequest
+from backend.models.user import User
 from backend.utilities.exceptions import ConflictException
 
 
