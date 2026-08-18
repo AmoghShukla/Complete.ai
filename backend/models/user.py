@@ -44,3 +44,9 @@ class User(Base):
         onupdate=func.now(),
         nullable=False,
     )
+
+    is_deleted: Mapped[Boolean] = mapped_column(
+        default=False,
+        nullable=False,
+        server_default=False
+    ) 
