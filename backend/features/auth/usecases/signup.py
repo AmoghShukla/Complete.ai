@@ -3,6 +3,7 @@ from backend.features.auth.repository import UserRepository
 from backend.features.auth.schema import SignupRequest
 from backend.models.user import User
 from backend.utilities.exceptions import ConflictException
+from backend.utilities.security import Security
 
 
 async def signup(data : SignupRequest, db :AsyncSession):
@@ -15,3 +16,5 @@ async def signup(data : SignupRequest, db :AsyncSession):
         user_email = data.user_email,
         user_password = Security.hash_password(data.user_password)
     )
+    new_user = UserRepository.signup(new_user, db)
+    
