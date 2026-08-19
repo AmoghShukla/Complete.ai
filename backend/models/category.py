@@ -21,16 +21,8 @@ class Category(AuditTrailMixin, Base):
         UUID(as_uuid=True), ForeignKey("users.user_id", ondelete="CASCADE"),
         nullable=False, index=True,
     )
- 
     category_name: Mapped[str] = mapped_column(String(50), nullable=False)
     category_color: Mapped[str | None] = mapped_column(String(7), nullable=True)
- 
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now(), nullable=False
-    )
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False
-    )
  
     tasks: Mapped[list["Task"]] = relationship("Task", back_populates="category")
  
