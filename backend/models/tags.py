@@ -9,8 +9,9 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
  
 from backend.core.base import Base
+from backend.utilities.Mixins import AuditTrailMixin
 
-class Tag(Base):
+class Tag(AuditTrailMixin, Base):
     __tablename__ = "tags"
  
     tag_id: Mapped[uuid.UUID] = mapped_column(

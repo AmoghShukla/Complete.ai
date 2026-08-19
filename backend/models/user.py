@@ -6,8 +6,9 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship, DeclarativeBase
 
 from backend.core.base import Base
+from backend.utilities.Mixins import AuditTrailMixin
 
-class User(Base):
+class User(AuditTrailMixin, Base):
     __tablename__ = "users"
 
     user_id: Mapped[uuid.UUID] = mapped_column(
@@ -32,21 +33,3 @@ class User(Base):
         String(255),
         nullable=False,
     )
-
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        server_default=func.now(),
-        nullable=False,
-    )
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        server_default=func.now(),
-        onupdate=func.now(),
-        nullable=False,
-    )
-
-    is_deleted: Mapped[Boolean] = mapped_column(
-        default=False,
-        nullable=False,
-        server_default=False
-    ) 
