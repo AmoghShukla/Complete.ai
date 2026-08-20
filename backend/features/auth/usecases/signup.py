@@ -17,4 +17,5 @@ async def signup(data : SignupRequest, db :AsyncSession):
         user_password = Security.hash_password(data.user_password)
     )
     new_user = UserRepository.signup(new_user, db)
-    
+    return new_user
+
