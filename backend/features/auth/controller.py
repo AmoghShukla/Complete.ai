@@ -13,6 +13,6 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
 async def signup(data: SignupRequest, db: AsyncSession = Depends(get_db)):
     return await signup(data, db)
 
-@router.post(prefix='/login', status_code=status.HTTP_200_OK)
+@router.post('/login', status_code=status.HTTP_200_OK)
 async def login(data : LoginRequest, db : AsyncSession = Depends(get_db)):
     return await user_login(data, db)
