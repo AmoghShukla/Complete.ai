@@ -1,4 +1,7 @@
+from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.ext.asyncio import AsyncSession
+from backend.models.user import User
 from backend.utilities.exceptions import DatabaseError
 
 class UserRepository:
@@ -13,5 +16,18 @@ class UserRepository:
         except SQLAlchemyError as e:
             await db.rollback()
             raise DatabaseError()
+
+    @staticmethod
+    async def get_user_by_email(email_id: str, db: AsyncSession) -> User | None:
+        try:
+            result = await db.execute(
+                select(User).where(
+                    User.user_email == email_id,
+                    User.is_deleted == False
+                )
+            )
+            return result.scalars().first()
+        except SQLAlchemyError as e:
+            raise DatabaseError('Error fetching user by email') from e
 
 
