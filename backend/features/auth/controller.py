@@ -1,7 +1,9 @@
 from fastapi import APIRouter, status, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from .schema import SignupReponse, SignupRequest, LoginRequest
 
+from .schema import SignupReponse, SignupRequest, LoginRequest
+from .usecases.login import user_login
+from .usecases.signup import signup
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
