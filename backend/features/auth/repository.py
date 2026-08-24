@@ -1,5 +1,4 @@
 from sqlalchemy.exc import SQLAlchemyError
-
 from backend.utilities.exceptions import DatabaseError
 
 class UserRepository:
