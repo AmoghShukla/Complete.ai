@@ -5,8 +5,7 @@ from backend.models.user import User
 from backend.utilities.exceptions import ConflictException
 from backend.utilities.security import Security
 
-
-async def signup(data : SignupRequest, db :AsyncSession):
+async def Signup(data : SignupRequest, db :AsyncSession):
     '''check whether the enetered email is unique or not'''
     user_exists = await UserRepository.get_user_by_email(data.user_email, db)
     if user_exists:
