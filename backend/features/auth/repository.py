@@ -10,7 +10,7 @@ class UserRepository:
     async def signup(data, db):
         try:
             db.add(data)
-             db.commit()
+            await db.commit()
             await db.refresh(data)
             return data
         except SQLAlchemyError as e:
