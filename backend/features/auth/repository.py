@@ -28,6 +28,6 @@ class UserRepository:
                         )
             return result.scalars().first()
         except SQLAlchemyError as e:
-            raise 
+            raise DatabaseError() from e
 
 
