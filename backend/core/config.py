@@ -6,6 +6,10 @@ class Settings(BaseSettings):
     DB_NAME : str
     DB_PASSWORD : str
     DB_HOST : str
+    JWT_SECRET_KEY: str | None = None
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
     @property
     def DATABASE_URL(self):

@@ -13,9 +13,9 @@ class UserRepository:
             await db.commit()
             await db.refresh(data)
             return data
-        except SQLAlchemyError as e:
+        except SQLAlchemyError as exc:
             await db.rollback()
-            raise DatabaseError()
+            raise DatabaseError("Error creating user") from exc
 
     @staticmethod
     async def get_user_by_email(email_id: str, db: AsyncSession) -> User | None:

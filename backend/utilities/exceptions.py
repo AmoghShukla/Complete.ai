@@ -42,5 +42,8 @@ class InvalidTicketTransitionException(BadRequestException):
         super().__init__(f"Cannot transition ticket from {from_status} to {to_status}")
 
 class DatabaseError(AppException):
-    def __init__(self, message : str):
-        super().__init__(f"{message}, Error While Interacting with the Database", status.HTTP_500_INTERNAL_SERVER_ERROR)
+    def __init__(self, message: str = "Database error"):
+        super().__init__(
+            status.HTTP_500_INTERNAL_SERVER_ERROR,
+            f"{message}, Error While Interacting with the Database",
+        )

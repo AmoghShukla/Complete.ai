@@ -7,11 +7,10 @@ class SignupRequest(BaseModel):
     user_email: EmailStr
     user_password: str = Field(..., min_length=8)
 
-class SignupReponse(BaseModel):
-    user_id : UUID
-    user_name : str
-    role : str
-    user_email : str
+class SignupResponse(BaseModel):
+    user_id: UUID
+    user_name: str
+    user_email: EmailStr
 
 class LoginRequest(BaseModel):
     user_email: EmailStr
