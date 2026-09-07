@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from backend.features.auth.repository import UserRepository
-from backend.features.auth.schema import LoginRequest, TokenResponse
+from backend.features.auth.schema import LoginRequest, RefreshTokenRequest, TokenResponse
 from backend.utilities.exceptions import UnauthorizedException
 from backend.utilities.security import Security
 
@@ -15,4 +15,13 @@ async def user_login(data :LoginRequest, db: AsyncSession) -> TokenResponse:
     return TokenResponse(
         access_token=Security.create_access_token(str(user.user_id)),
         refresh_token=Security.create_refresh_token(str(user.user_id)),
+    )
+
+
+async def refresh_access_token(data: RefreshTokenRequest) -> TokenResponse:
+    payload = Security.decode_token(data.refresh_token, expected_type="refresh")
+    subject = payload["sub"]
+    return TokenResponse(
+        access_token=Security.create_access_token(subject),
+        refresh_token=Security.create_refresh_token(subject),
     )

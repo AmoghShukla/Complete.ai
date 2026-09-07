@@ -55,3 +55,18 @@ class Security:
             Security._jwt_secret(),
             algorithm=settings.JWT_ALGORITHM,
         )
+
+    @staticmethod
+    def decode_token(token: str, expected_type: str) -> dict:
+        try:
+            payload = jwt.decode(
+                token,
+                Security._jwt_secret(),
+                algorithms=[settings.JWT_ALGORITHM],
+            )
+        except jwt.InvalidTokenError as exc:
+            raise BadRequestException("Invalid or expired token") from exc
+
+        if payload.get("type") != expected_type or not payload.get("sub"):
+            raise BadRequestException("Invalid token type")
+        return payload
