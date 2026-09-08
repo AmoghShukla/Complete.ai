@@ -30,7 +30,7 @@ class Tag(AuditTrailMixin, Base):
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
  
-    tasks: Mapped[list["Task"]] = relationship("Task", secondary=task_tags, back_populates="tags")
+    tasks: Mapped[list["Task"]] = relationship("Task", back_populates="tags")
  
     def __repr__(self) -> str:
         return f"<Tag tag_id={self.tag_id} name={self.tag_name!r}>"
