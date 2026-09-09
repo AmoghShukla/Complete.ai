@@ -10,6 +10,7 @@ from backend.features.auth.controller import router as AuthRouter
 from backend.features.tasks.controller import router as TaskRouter
 from backend.features.categories.controller import router as CategoryRouter
 from backend.features.tags.controller import router as TagRouter
+from backend.features.ai.controller import router as AIRouter
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -33,6 +34,7 @@ app.include_router(TaskRouter)
 app.include_router(CategoryRouter)
 app.include_router(TagRouter)
 app.include_router(ReminderRouter)
+app.include_router(AIRouter)
 
 @app.get('/', tags=['Health'])
 def health():

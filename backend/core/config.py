@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
     REMINDER_POLL_INTERVAL_SECONDS: int = 30
+    AI_MODEL: str = "openai:gpt-4o-mini"
+    OPENAI_API_KEY: str | None = None
 
     @property
     def DATABASE_URL(self):

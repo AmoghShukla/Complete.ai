@@ -21,10 +21,11 @@ dependencies = [
     "pyjwt (>=2.13.0,<3.0.0)",
     "boto3 (>=1.43.56,<2.0.0)",
     "websockets (>=16.1.1,<17.0.0)"
+    ,"pydantic-ai-slim[openai] (>=1.0.0,<2.0.0)"
 ]
 
 [tool.poetry]
-packages = [{include = "complete"}]
+packages = [{include = "backend"}]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
