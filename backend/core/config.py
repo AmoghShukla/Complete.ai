@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    REMINDER_POLL_INTERVAL_SECONDS: int = 30
 
     @property
     def DATABASE_URL(self):
