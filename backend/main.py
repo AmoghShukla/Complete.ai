@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from backend.features.auth.controller import router as AuthRouter
+from backend.features.tasks.controller import router as TaskRouter
 
 app = FastAPI(
     title = "Complete.AI",
@@ -8,6 +9,7 @@ app = FastAPI(
     )
 
 app.include_router(AuthRouter)
+app.include_router(TaskRouter)
 
 @app.get('/', tags=['Health'])
 def health():
