@@ -30,4 +30,17 @@ class UserRepository:
         except SQLAlchemyError as e:
             raise DatabaseError('Error fetching user by email') from e
 
+    @staticmethod
+    async def get_user_by_id(user_id, db: AsyncSession) -> User | None:
+        try:
+            result = await db.execute(
+                select(User).where(
+                    User.user_id == user_id,
+                    User.is_deleted == False,
+                )
+            )
+            return result.scalars().first()
+        except SQLAlchemyError as exc:
+            raise DatabaseError("Error fetching user by id") from exc
+
 
