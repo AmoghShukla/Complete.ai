@@ -20,7 +20,6 @@ class UserRepository:
     @staticmethod
     async def get_user_by_email(email_id: str, db: AsyncSession) -> User | None:
         try:
-            
             result = await db.execute(
                         select(User).where(
                                 User.user_email == email_id,
