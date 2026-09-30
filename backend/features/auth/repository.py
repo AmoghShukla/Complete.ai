@@ -26,6 +26,7 @@ class UserRepository:
                                 User.is_deleted == False
                             )
                         )
+            
             return result.scalars().first()
         except SQLAlchemyError as e:
             raise DatabaseError('Error fetching user by email') from e
