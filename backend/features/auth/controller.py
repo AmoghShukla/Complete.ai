@@ -3,8 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core.session import get_db
 
-from .schema import (
-    LoginRequest,
+from .schema import (    LoginRequest,
     RefreshTokenRequest,
     SignupRequest,
     SignupResponse,
